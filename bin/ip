@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const publicIp = require('public-ip');
-const home = require('homedir');
+const fs = require("fs");
+const publicIp = require("public-ip");
+const home = require("homedir");
 
-fs.readFile(`${home()}/.ip.txt`, 'utf8', function(err, oldIp) {
+fs.readFile(`${home()}/.ip.txt`, "utf8", function(err, oldIp) {
   if (err) {
-    oldIp = 'none';
+    oldIp = "none";
   }
 
   publicIp.v4().then(ip => {
     if (oldIp !== ip) {
       console.log(`IP has changed from ${oldIp} to ${ip}`);
-      fs.writeFileSync(`${home()}/.ip.txt`, ip, 'utf8');
+      fs.writeFileSync(`${home()}/.ip.txt`, ip, "utf8");
     }
   });
 });
